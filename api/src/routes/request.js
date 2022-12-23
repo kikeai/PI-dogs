@@ -40,7 +40,7 @@ return apiInfo;
 
 // -- GET DATA FROM DATABASE -- //
 const getFromDb = async () => {
-    return await Dog.findAll({
+    let dogsDb = await Dog.findAll({
         include: {
             model: Temperament,
             attributes: ['name'], //atributos que quiero traer del modelo Temperament, el id lo trae automatico
@@ -49,6 +49,14 @@ const getFromDb = async () => {
             },
         }
     })
+
+    dogsDb = await dogsDb.map( d => {
+        d = JSON.parse(JSON.stringify(d));
+        d.Temperaments = d.Temperaments.map(t => t.name);
+        return d;
+    })
+    
+    return dogsDb
 };
 
 // -- MIXED API DATA AND DB DATA -- //
