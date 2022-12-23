@@ -33,16 +33,26 @@ router.post('/', async (req, res) => {
         max_height,
         min_weight,
         max_weight,
-        life_span,
+        min_life_span,
+        max_life_span,
         temperaments,
         image
        } = req.body;
-    
+       
+       
        const fixedHeight = [];
        fixedHeight.push(min_height, max_height)
-    
+       
        const fixedWeight = [];
        fixedWeight.push(min_weight, max_weight)
+       
+       let life_span;
+       if(min_life_span === null) life_span = "unknown";
+       else if(max_life_span === null){
+        life_span = `${min_life_span} years`
+       } else {
+        life_span = `${min_life_span} - ${max_life_span} years`
+       }
 
        try {
            let dog = await Dog.create({
@@ -51,7 +61,7 @@ router.post('/', async (req, res) => {
             weight: fixedWeight,
             life_span,
             image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
-           })
+            })
         
            let associatedTemp = await Temperament.findAll({
                where: { name: temperaments},
