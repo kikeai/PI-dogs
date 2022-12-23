@@ -23,7 +23,6 @@ module.exports = (sequelize) => {
     },
     life_span: {
       type: DataTypes.STRING,
-      defaultValue: "unknown"
     },
     image: {
       type: DataTypes.STRING(500),
