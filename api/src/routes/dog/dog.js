@@ -43,22 +43,27 @@ router.post('/', async (req, res) => {
     
        const fixedWeight = [];
        fixedWeight.push(min_weight, max_weight)
-    
-       let dog = await Dog.create({
-        name,
-        height: fixedHeight,
-        weight: fixedWeight,
-        life_span,
-        image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
-       })
-    
-       let associatedTemp = await Temperament.findAll({
-           where: { name: temperaments},
-       })
-    
-       dog.addTemperament(associatedTemp);
-    
-       res.status(200).send("Dog created succesfully!")
+
+       try {
+           let dog = await Dog.create({
+            name,
+            height: fixedHeight,
+            weight: fixedWeight,
+            life_span,
+            image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
+           })
+        
+           let associatedTemp = await Temperament.findAll({
+               where: { name: temperaments},
+           })
+        
+           dog.addTemperament(associatedTemp);
+        
+           res.status(200).send("Dog created succesfully!")
+           
+       } catch (error) {
+            res.status(404).json({ error })        
+       }
 })
 
 
