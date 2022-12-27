@@ -52,7 +52,7 @@ const getFromDb = async () => {
 
     dogsDb = await dogsDb.map( d => {
         d = JSON.parse(JSON.stringify(d));
-        d.Temperaments = d.Temperaments.map(t => t.name);
+        d.temperaments = d.temperaments.map(t => t.name);
         return d;
     })
     

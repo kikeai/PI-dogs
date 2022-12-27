@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
     const {name} = req.query;
     const allDogs = await getAllDogs();
     if(name){
-        const dog = allDogs.filter(d => d.name.toLowerCase().includes(name.toLowerCase()));
-        dog.length ? res.status(200).send(dog) : res.status(404).send("Dog not found");
+        const dogFilter = allDogs.filter(d => d.name.toLowerCase().includes(name.toLowerCase()));
+        dogFilter.length ? res.status(200).send(dogFilter) : res.status(404).send("Dog not found");
     } else {
         res.status(200).send(allDogs)
     }
@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
 router.get('/:idRaza', async (req, res) => {
     const { idRaza } = req.params;
     const allDogs = await getAllDogs();
-    const dog = allDogs.filter(el => el.id == idRaza);
+    const dogFilter = allDogs.filter(el => el.id == idRaza);
     if (dog.length) {
-        res.status(200).json(dog);
+        res.status(200).json(dogFilter);
     }else{
         res.status(404).send("Dog no found in the Data");
     }
@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
        }
 
        try {
-           let dog = await Dog.create({
+           let breed = await Dog.create({
             name,
             height: fixedHeight,
             weight: fixedWeight,
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
                where: { name: temperaments},
            })
         
-           dog.addTemperament(associatedTemp);
+           breed.addTemperament(associatedTemp);
         
            res.status(200).send("Dog created succesfully!")
            
