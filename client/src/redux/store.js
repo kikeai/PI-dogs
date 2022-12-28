@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import favorites from './reducer';
+import breeds from './reducer';
 
 const store = createStore(
-   favorites,
+   breeds,
    applyMiddleware(thunk)
 );
 
