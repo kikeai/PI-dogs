@@ -1,10 +1,9 @@
-import twitter from '../../media/twitter.png'
+//import NavBar from "../NavBar/NavBar"
 
 export default function Home(){
     return (
         <div>
-            <h2>Home</h2>
-            <img src={twitter} alt="twitter" />
+            <h1>PI Dogs</h1>
         </div>
     )
 }
