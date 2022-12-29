@@ -19,7 +19,7 @@ router.get('/:idRaza', async (req, res) => {
     const { idRaza } = req.params;
     const allDogs = await getAllDogs();
     const dogFilter = allDogs.filter(el => el.id == idRaza);
-    if (dog.length) {
+    if (dogFilter.length) {
         res.status(200).json(dogFilter);
     }else{
         res.status(404).send("Dog no found in the Data");
