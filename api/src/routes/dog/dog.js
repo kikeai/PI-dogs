@@ -62,6 +62,13 @@ router.post('/', async (req, res) => {
             life_span,
             image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
             })
+
+            temperaments.forEach(el => {
+                let i = el.trim()
+                Temperament.findOrCreate({
+                 where: { name: i }
+            })
+            });
         
            let associatedTemp = await Temperament.findAll({
                where: { name: temperaments},
