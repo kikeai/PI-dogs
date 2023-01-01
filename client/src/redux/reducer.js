@@ -41,7 +41,8 @@ export default function breeds(state=initialState, action){
             }
         case ORDER_NAME:
             const orderCopy = [...state.myBreeds];
-            const ascendent = orderCopy.sort((a, b) => {
+            
+            let orderedName = payload === "A-Z" ? orderCopy.sort((a, b) => {
                 if(a.name > b.name){
                     return 1;
                 }
@@ -49,8 +50,7 @@ export default function breeds(state=initialState, action){
                     return -1;
                 }
                 return 0;
-            })
-            const descendent = orderCopy.sort((a, b) => {
+            }) : orderCopy.sort((a, b) => {
                 if(a.name < b.name){
                     return 1;
                 }
@@ -59,28 +59,24 @@ export default function breeds(state=initialState, action){
                 }
                 return 0;
             })
-            let orderedName;
-            if(payload === "A-Z") orderedName = ascendent;
-            if(payload === "Z-A") orderedName = descendent;
+            
             return{
                 ...state,
                 myBreeds: [...orderedName]
             }
         case ORDER_WEIGHT:
             const orderWeightCopy = [...state.myBreeds]
-            const weightAscendent = orderWeightCopy.sort((a, b) => {
+            
+            let orderWeight = payload === "Ascendent" ? orderWeightCopy.sort((a, b) => {
                 let weightA = (parseInt(a.weight[0]) + parseInt(a.weight[1])) / 2;
                 let weightB = (parseInt(b.weight[0]) + parseInt(b.weight[1])) / 2;
                 return weightA - weightB;
-            })
-            const weightDescendent = orderWeightCopy.sort((a, b) => {
+            }) : orderWeightCopy.sort((a, b) => {
                 let weightA = (parseInt(a.weight[0]) + parseInt(a.weight[1])) / 2;
                 let weightB = (parseInt(b.weight[0]) + parseInt(b.weight[1])) / 2;
                 return weightB - weightA;
             })
-            let orderWeight;
-            if(payload === "Ascendent") orderWeight = weightAscendent;
-            if(payload === "Descendent") orderWeight = weightDescendent;
+            
             return{
                 ...state,
                 myBreeds: [...orderWeight],
