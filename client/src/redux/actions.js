@@ -1,19 +1,23 @@
 import { GET_BREEDS, GET_TEMPERAMENTS, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS } from "./action-types";
 import axios from 'axios'
 
-export async function getBreeds(){
-    const res = await axios.get('http://localhost:3001/dogs')
-    return {
-        type: GET_BREEDS,
-        payload: res.data,
+export function getBreeds(){
+    return async function(dispatch) {
+        const res = await axios.get('http://localhost:3001/dogs')
+        return dispatch({
+            type: GET_BREEDS,
+            payload: res.data,
+        });
     }
 }
 
-export async function getTemperaments(){
-    const res = await axios.get('http://localhost:3001/temperaments')
-    return {
-        type: GET_TEMPERAMENTS,
-        payload: res.data.map(t => t.name),
+export function getTemperaments(){
+    return async function(dispatch) {
+        const res = await axios.get('http://localhost:3001/temperaments')
+        return dispatch({
+            type: GET_TEMPERAMENTS,
+            payload: res.data,
+        });
     }
 }
 
