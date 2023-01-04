@@ -8,6 +8,7 @@ export default function Cards(props){
                 {
                     dogs.map((b) => <Card
                         key={b.id}
+                        id={b.id}
                         name={b.name}
                         weight={b.weight}
                         temperaments={b.temperaments}
