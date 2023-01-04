@@ -1,4 +1,4 @@
-import { GET_BREEDS, GET_TEMPERAMENTS, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS } from "./action-types";
+import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS } from "./action-types";
 import axios from 'axios'
 
 export function getBreeds(){
@@ -18,6 +18,31 @@ export function getTemperaments(){
             type: GET_TEMPERAMENTS,
             payload: res.data,
         });
+    }
+}
+
+export function getDetail(id){
+    return async function(dispatch){
+        const res = await axios.get(`http://localhost:3001/dogs/${id}`)
+        return dispatch({
+            type: GET_DETAIL,
+            payload: res.data,
+        })
+    }
+}
+
+export function searchBreed(name){
+    return async function(dispatch){
+        try {
+            const res = await axios.get(`http://localhost:3001/dogs/?name=${name}`)
+            return dispatch({
+                type: SEARCH_BREED,
+                payload: res.data,
+            })  
+        } catch (error) {
+            return 'Breed not found'
+        }
+        
     }
 }
 

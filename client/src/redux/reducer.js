@@ -1,9 +1,10 @@
-import { GET_BREEDS, GET_TEMPERAMENTS, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS } from "./action-types";
+import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS } from "./action-types";
 
 const initialState = {
     myBreeds: [],
     allBreeds: [],
     temperaments: [],
+    detail: [],
 };
 
 export default function breeds(state=initialState, action){
@@ -20,6 +21,16 @@ export default function breeds(state=initialState, action){
                 ...state,
                 temperaments: [...payload]
             }
+        case GET_DETAIL:
+            return{
+                ...state,
+                detail: [...payload]
+            }
+        case SEARCH_BREED:
+            return{
+                ...state,
+                myBreeds: [...payload]
+            }
         case FILTER_BREEDS:
             const filterCopy = [...state.allBreeds]
             const filterApi = filterCopy.filter(b => !isNaN(b.id));
@@ -33,11 +44,16 @@ export default function breeds(state=initialState, action){
                 myBreeds: [...filteredBreeds],
             }
         case FILTER_TEMPERAMENTS:
-            const breedsCopy = [...state.myBreeds];
-            const breedFilter = breedsCopy.filter(b => b.temperaments.includes(payload))
+            let breedsCopy;
+            if(payload === "All"){
+                breedsCopy = [...state.allBreeds]
+            } else{
+                breedsCopy = [...state.myBreeds];
+                breedsCopy = breedsCopy.filter(b => b.temperaments.includes(payload))
+            }
             return{
                 ...state,
-                myBreeds: [...breedFilter],
+                myBreeds: [...breedsCopy],
             }
         case ORDER_NAME:
             const orderCopy = [...state.myBreeds];
