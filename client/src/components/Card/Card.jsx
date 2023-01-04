@@ -1,8 +1,9 @@
 import styles from './card.module.css'
 import weightIcon from '../../media/peso.png'
+import { Link } from 'react-router-dom';
 
 export default function Card(props){
-    const {name, weight, temperaments, image} = props
+    const {name, weight, temperaments, image, id} = props
     const weightToString = () => {
         let weight1 = weight[0]
         let weight2 = weight[1]
@@ -39,7 +40,7 @@ export default function Card(props){
         }
     }
     return (
-        <div className={styles.cardContainer}>
+        <Link className={styles.cardContainer} to={`/detail/${id}`}>
             <img className={styles.dog} src={image} alt="perro" />
             <div className={styles.nameContainer}>
                 <h4 className={styles.name}>{name}</h4>
@@ -51,6 +52,6 @@ export default function Card(props){
             <div className={styles.temperamentsContainer}>
                 <p className={styles.temperaments}>{temperamentsToString()}</p>
             </div>
-        </div>
+        </Link>
     )
 }
