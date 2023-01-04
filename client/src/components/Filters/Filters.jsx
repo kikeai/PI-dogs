@@ -27,8 +27,9 @@ export default function Filters(){
                 <p className={styles.nameSelects}>Temperament</p>
                 <select className={styles.filterSelects} name="temperament" onChange={handleChange}>
                     <option disabled selected defaultValue>Select Temperament</option>
+                    <option value="All">All</option>
                     {
-                        temps.map(t => <option value={t.name}>{t.name}</option>)
+                        temps.map(t => <option value={t.name} key={`${t.id}${t.name}`}>{t.name}</option>)
                     }
                 </select>
             </div>
