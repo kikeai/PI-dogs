@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import Detail from './components/Detail/Detail';
 import Home from './components/Home/Home';
 import Form from './components/Form/Form';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/" render={() => <LandingPage />} />
       <Route path="/home" render={() => <NavBar />} />
       <Route exact path="/home" render={() => <Home />} />
+      <Route exact path="/home" render={() => <Footer />} />
       <Route exact path="/create" render={() => <Form />} />
       <Route exact path="/detail/:id" render={() => <Detail />} />
     </div>
