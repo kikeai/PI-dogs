@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+
+.footerContainer{
+    background-color: #2b2d42;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logoFooter{
+    margin-bottom: 20px;
+    margin-top: 30px;
+    max-height: 50px;
+}
+
+.textFooter{
+    max-width: 400px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 0.9em;
+    color: antiquewhite;
+}
+
+.redesContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 300px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.redes{
+    max-width: 20px;
+}
+
+.linkContainer{
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.link{
+    text-decoration: none;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: .8em;
+    color: antiquewhite;
+    transition: all 300ms ease;
+}
+
+.link:hover{
+    color: rgb(239, 35, 60);
+}
+
+.copyContainer{
+    background-color: #12131b;
+    width: 100%;
+    text-align: center;
+}
+
+.copy{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 0.9em;
+    color: antiquewhite;
+}
