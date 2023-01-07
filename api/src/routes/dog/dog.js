@@ -47,8 +47,8 @@ router.post('/', async (req, res) => {
        fixedWeight.push(min_weight, max_weight)
        
        let life_span;
-       if(min_life_span === null) life_span = "unknown";
-       else if(max_life_span === null){
+       if(min_life_span === "") life_span = "unknown";
+       else if(max_life_span === ""){
         life_span = `${min_life_span} years`
        } else {
         life_span = `${min_life_span} - ${max_life_span} years`
@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
             image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
             })
 
-            temperaments.forEach(el => {
+            await temperaments.forEach(el => {
                 let i = el.trim()
                 Temperament.findOrCreate({
                  where: { name: i }
@@ -73,7 +73,7 @@ router.post('/', async (req, res) => {
            let associatedTemp = await Temperament.findAll({
                where: { name: temperaments},
            })
-        
+
            breed.addTemperament(associatedTemp);
         
            res.status(200).send("Breed created succesfully!")
