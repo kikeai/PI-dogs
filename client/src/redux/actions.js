@@ -80,3 +80,14 @@ export function restartFilters(){
         payload: "Restart"
     }
 }
+
+export function postBreed(breed){
+    return async function(){
+        try {
+            const res = await axios.post(`http://localhost:3001/dogs`, breed);
+            return res.data; 
+        } catch (error) {
+            return error;
+        }
+    }
+}
