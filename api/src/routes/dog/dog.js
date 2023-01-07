@@ -76,10 +76,10 @@ router.post('/', async (req, res) => {
         
            breed.addTemperament(associatedTemp);
         
-           res.status(200).send("Dog created succesfully!")
+           res.status(200).send("Breed created succesfully!")
            
        } catch (error) {
-            res.status(404).json({ error })        
+            res.status(404).send("Breed no created!")        
        }
 })
 
