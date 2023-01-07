@@ -1,11 +1,16 @@
-import { useState } from "react";
-//import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./form.module.css";
 import validates from "./validates";
 import { tempValidate } from "./validates";
+import { Link } from 'react-router-dom';
+import { postBreed, getTemperaments, getBreeds } from "../../redux/actions";
+
 
 export default function Form(){
-//    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    //const breed = useSelector(state => state.myBreeds)?.map(b => b.name);
+    const temps = useSelector(state => state.temperaments);
     const [dog, setDog] = useState({
         name: "",
         min_height: "",
@@ -30,6 +35,23 @@ export default function Form(){
         min_life_span: "",
         max_life_span: "",
     })
+
+    async function handleSubmit(e){
+        e.preventDefault()
+        const res = dispatch(postBreed(dog));
+        alert(res)
+        setDog({
+            name: "",
+            min_height: "",
+            max_height: "",
+            min_weight: "",
+            max_weight: "",
+            min_life_span: "",
+            max_life_span: "",
+            temperaments: [],
+            image: "",
+        })
+    }
 
     function submitDisabled(){
         let err = false;
@@ -101,10 +123,16 @@ export default function Form(){
 
     }
 
+    useEffect(() => {
+        dispatch(getBreeds())
+        dispatch(getTemperaments())
+    }, [dispatch])
+
     return (
         <div className={styles.body}>
+            <Link className={styles.buttonHome} to='/home'>Back Home</Link>
             <div className={styles.formContainer}>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className={styles.inputContainer1}>
                         <div className={styles.inputSoon1}>
                             <p className={styles.nameInput}>*Name</p>
@@ -156,8 +184,9 @@ export default function Form(){
                         <p className={styles.nameTemp}>Temperaments</p>
                         <select className={styles.select} name="temperaments" onChange={handleChange}>
                             <option value="" hidden>Temperament</option>
-                            <option value="Active">Active</option>
-                            <option value="Roma">Roma</option>
+                            {
+                                temps.map(t => <option value={t.name} key={`${t.id}${t.name}`}>{t.name}</option>)
+                            }
                         </select>
                         <input className={!tempErr? styles.inputOk : styles.inputBad} type="text" value={newTemp} onChange={handleTempChange} placeholder="Set a temperament" />
                         {tempErr? <p className={styles.errorText}>{tempErr}</p>: <p className={styles.falseText}>p</p>}
