@@ -50,11 +50,6 @@
     background-color: #d90429;
 }
 
-.buttonSearch[disabled]{
-    background-color: #3a0e13;
-    cursor: no-drop;
-}
-
 .lens{
     max-width: 20px;
 }
