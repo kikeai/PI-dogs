@@ -15,7 +15,6 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 500px;
     width: 600px;
     padding: 40px;
     background-color: #2b2d42;
@@ -23,12 +22,41 @@
 }
 
 .inputsContainer{
+    margin-top: 20px;
     display: flex;
     gap: 40px;
 }
 
+.inputContainer1{
+    display: flex;
+    justify-content: center;
+}
+
 .inputSoon{
     position: relative;
+}
+
+.inputSoon1{
+    margin-top: 20px;
+    position: relative;
+    width: 150px;
+}
+
+.selectContainer{
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+}
+
+.nameTemp{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 0.7em;
+    color: #edf2f4;
+    position: absolute;
+    top: 0;
+    right: 45px;
+    margin-top: -17px;
 }
 
 .nameInput{
@@ -81,13 +109,32 @@
 }
 
 .falseText{
+    margin-top: 2px;
     color: #2b2d42;
+    font-size: 0.7em;
+}
+
+.cont{
+    display: flex;
+    justify-content: center;
+}
+
+.tempsText{
+    background-color: #edf2f4;
+    color:#2b2d42;
+    max-width: 300px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
     font-size: 0.8em;
+    margin-bottom: 15px;
 }
 
 .select{
     background-color: rgb(219, 219, 219);
     height: 32px;
+    max-width: 200px;
     outline: none;
     padding-left: 10px;
     padding-right: 10px;
@@ -131,7 +178,8 @@
 
 .errorText{
     color: red;
-    font-size: 0.8em;
+    margin-top: 2px;
+    font-size: 0.7em;
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
     font-style: italic;

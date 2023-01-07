@@ -1,17 +1,5 @@
-
-// {
-//     name,
-//     min_height,
-//     max_height,
-//     min_weight,
-//     max_weight,
-//     min_life_span,
-//     max_life_span,
-//     temperaments,
-//     image
-//    }
-const nameRegex = /^[a-zA-Z]+$/;
-const numRegex = /^[0-9]*$/;
+const nameRegex = /^[a-zA-Z\s]*$/;
+const tempRegex = /^[a-zA-Z]*$/;
 
 export default function validates(inputs){
     let errors = {};
@@ -23,18 +11,27 @@ export default function validates(inputs){
     if(inputs.name === ""){
         errors.name = "*It cant be empty"
     }
+    if(inputs.name.charAt(inputs.name.length - 1) === " "){
+        errors.name = "*The last character cannot be a space"
+    }
+    if(inputs.name.charAt(0) === " "){
+        errors.name = "*The first character cannot be a space"
+    }
+    if(inputs.name.includes("  ")){
+        errors.name = "*No two spaces can be together"
+    }
 
     // -- HEIGHT --
     if(inputs.min_height === ""){
         errors.min_height = "*It cant be empty"
     }
-    if(!numRegex.test(inputs.min_height)){
-        errors.min_height = "*No letters or special characters";
+    if(parseInt(inputs.min_height) <= 0){
+        errors.min_height = "*Cannot be equal to or less than 0";
     }
-    if(!numRegex.test(inputs.max_height)){
-        errors.max_height = "*No letters or special characters";
+    if(parseInt(inputs.max_height) <= 0){
+        errors.max_height = "*Cannot be equal to or less than 0";
     } else if(parseInt(inputs.min_height) >= parseInt(inputs.max_height)){
-        errors.min_height = "*Min not greater than max";
+        errors.min_height = "*Min not greater or equal than max";
         errors.max_height = "*Max not less or equal than min";
     }
     
@@ -42,13 +39,13 @@ export default function validates(inputs){
     if(inputs.min_weight === ""){
         errors.min_weight = "*It cant be empty"
     }
-    if(!numRegex.test(inputs.min_weight)){
-        errors.min_weight = "*No letters or special characters";
+    if(parseInt(inputs.min_weight) <= 0){
+        errors.min_weight = "*Cannot be equal to or less than 0";
     }
-    if(!numRegex.test(inputs.max_weight)){
-        errors.max_weight = "*No letters or special characters";
+    if(parseInt(inputs.max_weight) <= 0){
+        errors.max_weight = "*Cannot be equal to or less than 0";
     } else if(parseInt(inputs.min_weight) >= parseInt(inputs.max_weight)){
-        errors.min_weight = "*Min not greater than max";
+        errors.min_weight = "*Min not greater or equal than max";
         errors.max_weight = "*Max not less or equal than min";
     }
 
@@ -56,15 +53,35 @@ export default function validates(inputs){
     if(inputs.min_life_span === ""){
         errors.min_life_span = "*It cant be empty"
     }
-    if(!numRegex.test(inputs.min_life_span)){
-        errors.min_life_span = "*No letters or special characters";
+    if(parseInt(inputs.min_life_span) <= 0){
+        errors.min_life_span = "*Cannot be equal to or less than 0";
     }
-    if(!numRegex.test(inputs.max_life_span)){
-        errors.max_life_span = "*No letters or special characters";
+    if(parseInt(inputs.max_life_span) <= 0){
+        errors.max_life_span = "*Cannot be equal to or less than 0";
     } else if(parseInt(inputs.min_life_span) >= parseInt(inputs.max_life_span)){
-        errors.min_life_span = "*Min not greater than max";
+        errors.min_life_span = "*Min not greater or equal than max";
         errors.max_life_span = "*Max not less or equal than min";
     }
 
     return errors;
+}
+
+export function tempValidate(str){
+    let error = "";
+    if(!tempRegex.test(str)){
+        error = "*No letters or special characters"
+    }
+    if(str.includes(" ")){
+        error = "*Only a word"
+    }
+    if(str.charAt(str.length - 1) === " "){
+        error = "*The last character cannot be a space"
+    }
+    if(str.charAt(0) === " "){
+        error = "*The first character cannot be a space"
+    } 
+    if(str === ""){
+        error = "";
+    }
+    return error;
 }

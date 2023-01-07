@@ -1,18 +1,8 @@
-import { useState } from "react"
-//import { useDispatch } from "react-redux"
-import styles from "./form.module.css"
-import validates from "./validates"
-// {
-//     name,
-//     min_height,
-//     max_height,
-//     min_weight,
-//     max_weight,
-//     min_life_span,
-//     max_life_span,
-//     temperaments,
-//     image
-//    }
+import { useState } from "react";
+//import { useDispatch } from "react-redux";
+import styles from "./form.module.css";
+import validates from "./validates";
+import { tempValidate } from "./validates";
 
 export default function Form(){
 //    const dispatch = useDispatch()
@@ -28,7 +18,8 @@ export default function Form(){
         image: "",
     })
 
-    const [newTemp, setNewTemp] = useState("")
+    const [newTemp, setNewTemp] = useState("");
+    const [tempErr, setTempErr] = useState("");
 
     const [errors, setErrors] = useState({
         name: "",
@@ -40,8 +31,19 @@ export default function Form(){
         max_life_span: "",
     })
 
+    function submitDisabled(){
+        let err = false;
+        for (const key in errors) {
+            if(errors[key] !== "") err = true;
+        }
+        if(!dog.name) err = true;
+        
+        return err;
+    }
+
     function handleTempChange(e){
         setNewTemp(e.target.value)
+        setTempErr(tempValidate(e.target.value))
     }
 
     function addOrRemoveTemp(e){
@@ -103,8 +105,8 @@ export default function Form(){
         <div className={styles.body}>
             <div className={styles.formContainer}>
                 <form>
-                    <div>
-                        <div className={styles.inputSoon}>
+                    <div className={styles.inputContainer1}>
+                        <div className={styles.inputSoon1}>
                             <p className={styles.nameInput}>*Name</p>
                             <input className={!errors.name? styles.inputOk : styles.inputBad} type="text" name="name" value={dog.name} onChange={handleChange} placeholder="Name"/>
                             { errors.name? <p className={styles.errorText}>{errors.name}</p>: <p className={styles.falseText}>p</p> }
@@ -114,12 +116,12 @@ export default function Form(){
                     <div className={styles.inputsContainer}>
                         <div className={styles.inputSoon}>
                             <p className={styles.nameInput}>*Min height</p>
-                            <input className={!errors.min_height? styles.inputOk : styles.inputBad} type="text" name="min_height" value={dog.min_height} onChange={handleChange} placeholder="Min Height" />
+                            <input className={!errors.min_height? styles.inputOk : styles.inputBad} type="number" name="min_height" value={dog.min_height} onChange={handleChange} placeholder="Min Height" />
                             { errors.min_height? <p className={styles.errorText}>{errors.min_height}</p>: <p className={styles.falseText}>p</p> }
                         </div>
                         <div className={styles.inputSoon}>
                             <p className={styles.nameInput}>Max height</p>
-                            <input className={!errors.max_height? styles.inputOk : styles.inputBad} type="text" name="max_height" value={dog.max_height} onChange={handleChange} placeholder="Max Height" />
+                            <input className={!errors.max_height? styles.inputOk : styles.inputBad} type="number" name="max_height" value={dog.max_height} onChange={handleChange} placeholder="Max Height" />
                             { errors.max_height? <p className={styles.errorText}>{errors.max_height}</p>: <p className={styles.falseText}>p</p> }
                         </div>
                     </div>
@@ -127,12 +129,12 @@ export default function Form(){
                     <div className={styles.inputsContainer}>
                         <div className={styles.inputSoon}>
                             <p className={styles.nameInput}>*Min weight</p>
-                            <input className={!errors.min_weight? styles.inputOk : styles.inputBad} type="text" name="min_weight" value={dog.min_weight} onChange={handleChange} placeholder="Min Weight" />
+                            <input className={!errors.min_weight? styles.inputOk : styles.inputBad} type="number" name="min_weight" value={dog.min_weight} onChange={handleChange} placeholder="Min Weight" />
                             { errors.min_weight? <p className={styles.errorText}>{errors.min_weight}</p>: <p className={styles.falseText}>p</p> }
                         </div>
                         <div className={styles.inputSoon}>
                             <p className={styles.nameInput}>Max weight</p>
-                            <input className={!errors.max_weight? styles.inputOk : styles.inputBad} type="text" name="max_weight" value={dog.max_weight} onChange={handleChange} placeholder="Max Weight" />
+                            <input className={!errors.max_weight? styles.inputOk : styles.inputBad} type="number" name="max_weight" value={dog.max_weight} onChange={handleChange} placeholder="Max Weight" />
                             { errors.max_weight? <p className={styles.errorText}>{errors.max_weight}</p>: <p className={styles.falseText}>p</p> }
                         </div>
                     </div>
@@ -140,37 +142,45 @@ export default function Form(){
                     <div className={styles.inputsContainer}>
                         <div className={styles.inputSoon}>
                             <p className={styles.nameInput}>*Min life span</p>
-                            <input className={!errors.min_life_span? styles.inputOk : styles.inputBad} type="text" name="min_life_span" value={dog.min_life_span} onChange={handleChange} placeholder="Min Life Span" />
+                            <input className={!errors.min_life_span? styles.inputOk : styles.inputBad} type="number" name="min_life_span" value={dog.min_life_span} onChange={handleChange} placeholder="Min Life Span" />
                             { errors.min_life_span? <p className={styles.errorText}>{errors.min_life_span}</p>: <p className={styles.falseText}>p</p> }
                         </div>
                         <div className={styles.inputSoon}>
                             <p className={styles.nameInput}>Max life span</p>
-                            <input className={!errors.max_life_span? styles.inputOk : styles.inputBad} type="text" name="max_life_span" value={dog.max_life_span} onChange={handleChange} placeholder="Max Life Span" />
+                            <input className={!errors.max_life_span? styles.inputOk : styles.inputBad} type="number" name="max_life_span" value={dog.max_life_span} onChange={handleChange} placeholder="Max Life Span" />
                             { errors.max_life_span? <p className={styles.errorText}>{errors.max_life_span}</p>: <p className={styles.falseText}>p</p> }
                         </div>
                     </div>
 
-                    <div>
+                    <div className={styles.selectContainer}>
+                        <p className={styles.nameTemp}>Temperaments</p>
                         <select className={styles.select} name="temperaments" onChange={handleChange}>
                             <option value="" hidden>Temperament</option>
                             <option value="Active">Active</option>
                             <option value="Roma">Roma</option>
                         </select>
-                        <input className={styles.inputOk} type="text" value={newTemp} onChange={handleTempChange} placeholder="Set a temperament" />
+                        <input className={!tempErr? styles.inputOk : styles.inputBad} type="text" value={newTemp} onChange={handleTempChange} placeholder="Set a temperament" />
+                        {tempErr? <p className={styles.errorText}>{tempErr}</p>: <p className={styles.falseText}>p</p>}
                         <div className={styles.buttonContainer}>
-                            <button className={styles.button} disabled={!newTemp} onClick={addOrRemoveTemp} name="add">Add temperament</button>
+                            <button className={styles.button} disabled={!newTemp || tempErr} onClick={addOrRemoveTemp} name="add">Add temperament</button>
                             <button className={styles.button} disabled={!dog.temperaments.length} onClick={addOrRemoveTemp} name="remove">Come back</button>
                         </div>
-                        <p>{dog.temperaments.join(", ")}</p>
+                        <div className={styles.cont}>
+                            <p className={styles.tempsText}>{`(${dog.temperaments.join(", ")})`}</p>
+                        </div>
                     </div>
 
-                    <div className={styles.inputSoon}>
-                        <p className={styles.nameInput}>Image</p>
-                        <input className={styles.inputOk} type="text" name="image" value={dog.image} onChange={handleChange} placeholder="Url of your image" />
+                    <div className={styles.inputContainer1}>
+                        <div className={styles.inputSoon1}>
+                            <p className={styles.nameInput}>Image</p>
+                            <input className={styles.inputOk} type="text" name="image" value={dog.image} onChange={handleChange} placeholder="Url of your image" />
+                        </div>
                     </div>
+
                     <div className={styles.buttonContainer}>
-                        <button className={styles.button} type="submit">Create</button>
+                        <button className={styles.button} disabled={submitDisabled()} type="submit">Create</button>
                     </div>
+
                 </form>
             </div>
         </div>
