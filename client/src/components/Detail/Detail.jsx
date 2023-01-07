@@ -53,11 +53,11 @@ export default function Detail(){
         //temperament
         let temp1 = dogBreed[0].temperaments[0];
         let temp2 = dogBreed[0].temperaments[1];
-        if(!temp1){
-            dogTemperament = "Unknown"
-        }
         if(!temp2){
             dogTemperament = `(${temp1})`
+        }
+        if(!temp1){
+            dogTemperament = "Unknown"
         }else {
             dogTemperament = `(${dogBreed[0].temperaments.join(", ")})`
         }
