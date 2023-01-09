@@ -25,6 +25,7 @@ export default function Form(){
 
     const [newTemp, setNewTemp] = useState("");
     const [tempErr, setTempErr] = useState("");
+    const [resPost, setResPost] = useState("");
 
     const [errors, setErrors] = useState({
         name: "",
@@ -38,8 +39,8 @@ export default function Form(){
 
     async function handleSubmit(e){
         e.preventDefault()
-        const res = dispatch(postBreed(dog));
-        alert(res)
+        const res = await dispatch(postBreed(dog));
+        setResPost(res)
         setDog({
             name: "",
             min_height: "",
@@ -209,7 +210,7 @@ export default function Form(){
                     <div className={styles.buttonContainer}>
                         <button className={styles.button} disabled={submitDisabled()} type="submit">Create</button>
                     </div>
-
+                    <p className={styles.statusText}>{resPost}</p>
                 </form>
             </div>
         </div>
