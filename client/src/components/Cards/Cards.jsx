@@ -6,6 +6,9 @@ export default function Cards(props){
     return(
             <div className={styles.cards}>
                 {
+                    !dogs[0]? <h3 className={styles.notFoundMessage}>We're sorry, apparently the breed of dog you're trying to find doesn't exist.</h3> : null
+                }
+                {
                     dogs.map((b) => <Card
                         key={b.id}
                         id={b.id}
