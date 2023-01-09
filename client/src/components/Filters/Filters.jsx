@@ -1,19 +1,48 @@
 import styles from './filters.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions'
+import { useState } from 'react';
 
 export default function Filters(){
     const dispatch = useDispatch();
-    const temps = useSelector(state => state.temperaments)
+    const temps = useSelector(state => state.temperaments);
+    const [selects, setSelects] = useState({
+        temp: "",
+        ob: "",
+        ow: "",
+    })
+
+    function handleClick(e){
+        e.preventDefault()
+
+        dispatch(actions.restartFilters())
+        setSelects({
+            temp: "",
+            ob: "",
+            ow: "",
+        })
+    }
 
     function handleChange(e){
         const {name, value} = e.target;
         switch (name) {
             case "temperament":
+                setSelects({
+                    ...selects,
+                    temp: value
+                })
                 return dispatch(actions.filterTemperaments(value))
             case "orderbreed":
+                setSelects({
+                    ...selects,
+                    ob: value
+                })
                 return dispatch(actions.orderName(value))
             case "orderweigth":
+                setSelects({
+                    ...selects,
+                    ow: value
+                })
                 return dispatch(actions.orderWeight(value))
             default:
                 return;
@@ -25,7 +54,7 @@ export default function Filters(){
             <div>
                 <h3 className={styles.filterTitles}>Filters</h3>
                 <p className={styles.nameSelects}>Temperament</p>
-                <select className={styles.filterSelects} name="temperament" onChange={handleChange}>
+                <select className={styles.filterSelects} value={selects.temp} name="temperament" onChange={handleChange}>
                     <option value="" hidden>Select Temperament</option>
                     <option value="All">All</option>
                     {
@@ -35,22 +64,22 @@ export default function Filters(){
             </div>
 
             <div>
-                <h3 className={styles.filterTitles}>Orders</h3>
+                <h3 className={styles.filterTitles}>Ordered</h3>
                 <p className={styles.nameSelects}>Name</p>
-                <select className={styles.filterSelects} name="orderbreed" onChange={handleChange}>
+                <select className={styles.filterSelects} value={selects.ob} name="orderbreed" onChange={handleChange}>
                     <option value="" hidden>Select Order</option>
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
                 </select>
 
                 <p className={styles.nameSelects}>Weigth</p>
-                <select className={styles.filterSelects} name="orderweigth" onChange={handleChange}>
+                <select className={styles.filterSelects} value={selects.ow} name="orderweigth" onChange={handleChange}>
                     <option value="" hidden>Select Order</option>
                     <option value="Ascendent">Ascendent</option>
                     <option value="Descendent">Descendent</option>
                 </select>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.buttonReset}>Reset filters</button>
+                    <button disabled={selects.ob === "" && selects.ow === "" && selects.temp === ""} className={styles.buttonReset} onClick={handleClick}>Reset filters</button>
                 </div>
             </div>
         </div>
