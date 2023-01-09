@@ -8,11 +8,11 @@ export default function validates(inputs){
     if(!nameRegex.test(inputs.name)){
         errors.name = "*No numbers or special characters";
     }
-    if(inputs.name === ""){
-        errors.name = "*It cant be empty"
-    }
     if(inputs.name.charAt(0).toLowerCase() === inputs.name.charAt(0)){
         errors.name = "*The first letter must be uppercase"
+    }
+    if(inputs.name === ""){
+        errors.name = "*It cant be empty"
     }
     if(inputs.name.charAt(inputs.name.length - 1) === " "){
         errors.name = "*The last character cannot be a space"
