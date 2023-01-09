@@ -18,7 +18,7 @@ export default function SearchBar(){
         setBreed(value)
     }
     
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
         dispatch(actions.searchBreed(breed))
         setBreed("")
