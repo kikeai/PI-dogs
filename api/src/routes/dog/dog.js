@@ -60,21 +60,15 @@ router.post('/', async (req, res) => {
             height: fixedHeight,
             weight: fixedWeight,
             life_span,
-            image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
+            image: image ? image : "https://pbs.twimg.com/media/Fl_qUyIWQAgZ77o?format=jpg",
             })
 
-            await temperaments.forEach(el => {
-                let i = el.trim()
-                Temperament.findOrCreate({
-                 where: { name: i }
-            })
+            temperaments.forEach(async (el) => {
+                const dbBreed = await Temperament.findOrCreate({
+                 where: { name: el }
+                })
+                await breed.addTemperament(dbBreed[0])
             });
-        
-           let associatedTemp = await Temperament.findAll({
-               where: { name: temperaments},
-           })
-
-           breed.addTemperament(associatedTemp);
         
            res.status(200).send("Breed created succesfully!")
            
