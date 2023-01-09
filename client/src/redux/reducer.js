@@ -27,9 +27,11 @@ export default function breeds(state=initialState, action){
                 detail: [...payload]
             }
         case SEARCH_BREED:
+            let res = [];
+            if(typeof payload !== "string") res = [...payload];
             return{
                 ...state,
-                myBreeds: [...payload]
+                myBreeds: [...res]
             }
         case FILTER_BREEDS:
             const filterCopy = [...state.allBreeds]
@@ -86,10 +88,48 @@ export default function breeds(state=initialState, action){
             let orderWeight = payload === "Ascendent" ? orderWeightCopy.sort((a, b) => {
                 let weightA = (parseInt(a.weight[0]) + parseInt(a.weight[1])) / 2;
                 let weightB = (parseInt(b.weight[0]) + parseInt(b.weight[1])) / 2;
+                if(!a.weight[1]){
+                    weightA = parseInt(a.weight[0]);
+                }
+                if(!b.weight[1]){
+                    weightB = parseInt(b.weight[0]);
+                }
+                if(a.weight[0] === "NaN" && a.weight[1]){
+                    weightA = parseInt(a.weight[1])
+                }
+                if(b.weight[0] === "NaN" && b.weight[1]){
+                    weightB = parseInt(b.weight[1])
+                }
+                if(a.weight[0] === "NaN" && !a.weight[1]){
+                    weightA = 0
+                }
+                if(b.weight[0] === "NaN" && !b.weight[1]){
+                    weightB = 0
+                }
+                
                 return weightA - weightB;
             }) : orderWeightCopy.sort((a, b) => {
                 let weightA = (parseInt(a.weight[0]) + parseInt(a.weight[1])) / 2;
                 let weightB = (parseInt(b.weight[0]) + parseInt(b.weight[1])) / 2;
+                if(!a.weight[1]){
+                    weightA = parseInt(a.weight[0]);
+                }
+                if(!b.weight[1]){
+                    weightB = parseInt(b.weight[0]);
+                }
+                if(a.weight[0] === "NaN" && a.weight[1]){
+                    weightA = parseInt(a.weight[1])
+                }
+                if(b.weight[0] === "NaN" && b.weight[1]){
+                    weightB = parseInt(b.weight[1])
+                }
+                if(a.weight[0] === "NaN" && !a.weight[1]){
+                    weightA = 0
+                }
+                if(b.weight[0] === "NaN" && !b.weight[1]){
+                    weightB = 0
+                }
+                
                 return weightB - weightA;
             })
             

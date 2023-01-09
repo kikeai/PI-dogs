@@ -40,7 +40,11 @@ export function searchBreed(name){
                 payload: res.data,
             })  
         } catch (error) {
-            return 'Breed not found'
+            dispatch({
+                type: SEARCH_BREED,
+                payload: error.response.data,
+            })
+            return error.response.data
         }
         
     }
