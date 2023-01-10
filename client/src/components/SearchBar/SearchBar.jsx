@@ -1,11 +1,15 @@
 import styles from './searchbar.module.css'
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import lupa from '../../media/lupa.png'
 import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
 
 export default function SearchBar(){
     const [breed, setBreed] = useState("");
+
+    const navigate = useNavigate();
+    const location = useLocation()
 
     const dispatch = useDispatch();
     function handleChange(e){
@@ -18,8 +22,11 @@ export default function SearchBar(){
         setBreed(value)
     }
     
-    async function handleSubmit(e){
+    function handleSubmit(e){
         e.preventDefault();
+        if(location.pathname !== "/home"){
+            navigate("/home")
+        }
         dispatch(actions.searchBreed(breed))
         setBreed("")
     }
@@ -27,6 +34,7 @@ export default function SearchBar(){
     return(
         <div className={styles.container}>
         <select className={styles.select} name="filterbreed" onChange={handleChange}>
+            <option value="" hidden>Breeds</option>
             <option value="All">All</option>
             <option value="Existent">Existent</option>
             <option value="Created">Created</option>
