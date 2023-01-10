@@ -1,10 +1,11 @@
-import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS } from "./action-types";
+import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS, REQUEST } from "./action-types";
 
 const initialState = {
     myBreeds: [],
     allBreeds: [],
     temperaments: [],
     detail: [],
+    request: true,
 };
 
 export default function breeds(state=initialState, action){
@@ -141,6 +142,11 @@ export default function breeds(state=initialState, action){
             return{
                 ...state,
                 myBreeds: [...state.allBreeds],
+            }
+        case REQUEST:
+            return{
+                ...state,
+                request: payload,
             }
         default:
             return {...state};
