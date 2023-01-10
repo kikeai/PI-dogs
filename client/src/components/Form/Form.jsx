@@ -4,7 +4,7 @@ import styles from "./form.module.css";
 import validates from "./validates";
 import { tempValidate } from "./validates";
 import { Link } from 'react-router-dom';
-import { postBreed, getTemperaments, getBreeds } from "../../redux/actions";
+import { postBreed, getTemperaments, getBreeds, requestYoN } from "../../redux/actions";
 
 
 export default function Form(){
@@ -52,6 +52,7 @@ export default function Form(){
             temperaments: [],
             image: "",
         })
+        dispatch(requestYoN(true))
     }
 
     function submitDisabled(){
