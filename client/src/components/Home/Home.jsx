@@ -5,11 +5,12 @@ import Filters from "../Filters/Filters";
 import Cards from "../Cards/Cards";
 import { Paginate } from "../Paginate/Paginate";
 import Loading from "../Loading/Loading";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export default function Home(){
 
     const dispatch = useDispatch()
-    const [pagina, setPagina] = useState (1);
+    const [pagina, setPagina] = useLocalStorage ("paginate", 1);
     // eslint-disable-next-line no-unused-vars
     const [porPagina, setPorPagina] = useState (8);
     
