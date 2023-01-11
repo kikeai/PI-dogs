@@ -21,7 +21,7 @@ export default function Form(){
         temperaments: [],
         image: "",
     })
-
+    
     const [newTemp, setNewTemp] = useState("");
     const [tempErr, setTempErr] = useState("");
     const [resPost, setResPost] = useState("");
@@ -118,7 +118,7 @@ export default function Form(){
                 });
             }
         }
-        if(name === "name"){
+        else if(name === "name"){
             setDog({
                 ...dog,
                 [name]: value

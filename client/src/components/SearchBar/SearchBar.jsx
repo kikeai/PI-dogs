@@ -4,9 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import lupa from '../../media/lupa.png'
 import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export default function SearchBar(){
     const [breed, setBreed] = useState("");
+    const [filterBreed, setFilterBreed] = useLocalStorage("breed", "")
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -14,7 +16,13 @@ export default function SearchBar(){
     const dispatch = useDispatch();
     function handleChange(e){
         const {value} = e.target;
-        dispatch(actions.filterBreeds(value))
+        if(value === "Reset"){
+            dispatch(actions.restartFilters())
+            setFilterBreed("")
+        } else {
+            setFilterBreed(value)
+            dispatch(actions.filterBreeds(value))
+        }
     }
 
     function handleWrite(e){
@@ -33,11 +41,12 @@ export default function SearchBar(){
 
     return(
         <div className={styles.container}>
-        <select className={styles.select} name="filterbreed" onChange={handleChange}>
+        <select className={styles.select} value={filterBreed} name="filterbreed" onChange={handleChange}>
             <option value="" hidden>Breeds</option>
             <option value="All">All</option>
             <option value="Existent">Existent</option>
             <option value="Created">Created</option>
+            <option value="Reset">Reset filter</option>
         </select>
         <form className={styles.search} onSubmit={handleSubmit}>
             <input className={styles.input} type="search" onChange={handleWrite} value={breed} placeholder="Search breed" />

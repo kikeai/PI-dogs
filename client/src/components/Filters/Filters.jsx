@@ -1,12 +1,12 @@
 import styles from './filters.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions'
-import { useState } from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export default function Filters(){
     const dispatch = useDispatch();
     const temps = useSelector(state => state.temperaments);
-    const [selects, setSelects] = useState({
+    const [selects, setSelects] = useLocalStorage("selects", {
         temp: "",
         ob: "",
         ow: "",

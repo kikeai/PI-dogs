@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import styles from './paginate.module.css';
 
 export const Paginate = ({pagina, setPagina, maximo}) => {
-  const [input, setInput] = useState (1);
+  const [input, setInput] = useLocalStorage ("inputs", 1);
 
   const nextPage = () => {
     setInput (parseInt(input) + 1);
@@ -13,6 +13,11 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
     setInput (parseInt(input) - 1);
     setPagina (parseInt(pagina) - 1);
   };
+
+  if(input > Math.ceil(maximo)){
+    setPagina (1);
+    setInput (1);
+  }
 
   const onKeyDown = e => {
     // eslint-disable-next-line eqeqeq
