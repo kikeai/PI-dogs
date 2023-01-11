@@ -6,6 +6,7 @@ import * as actions from "../../redux/actions.js"
 import heart from "../../media/heart-icon.png";
 import height from "../../media/height-icon.png";
 import weight from "../../media/peso.png";
+import Loading from "../Loading/Loading";
 
 export default function Detail(){
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function Detail(){
 
     useEffect(() => {
         dispatch(actions.getDetail(id))
+        return () => dispatch(actions.deleteDetail())
     }, [dispatch, id])
 
     const dogBreed = useSelector(state => state.detail);
@@ -68,7 +70,7 @@ export default function Detail(){
 
     }
 
-    return (
+    return dogBreed.length?(
         <div className={styles.detailContainer}>
             <div>
                 <img className={styles.dogImage} src={dogImage} alt={dogName} />
@@ -95,5 +97,6 @@ export default function Detail(){
                 </div>
             </div>
         </div>
-    )
+    ):
+    <Loading />
 }
