@@ -1,4 +1,4 @@
-import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS, REQUEST } from "./action-types";
+import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, FILTER_TEMPERAMENTS, ORDER_NAME, ORDER_WEIGHT, RESTART_FILTERS, REQUEST, DELETE_DETAIL } from "./action-types";
 import axios from 'axios'
 
 export function getBreeds(){
@@ -100,5 +100,12 @@ export function requestYoN(status){
     return{
         type: REQUEST,
         payload: status,
+    }
+}
+
+export function deleteDetail(){
+    return{
+        type: DELETE_DETAIL,
+        payload: "delete"
     }
 }
