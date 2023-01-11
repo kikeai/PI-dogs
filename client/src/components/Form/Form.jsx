@@ -4,12 +4,11 @@ import styles from "./form.module.css";
 import validates from "./validates";
 import { tempValidate } from "./validates";
 import { Link } from 'react-router-dom';
-import { postBreed, getTemperaments, getBreeds, requestYoN } from "../../redux/actions";
+import { postBreed, getTemperaments, requestYoN } from "../../redux/actions";
 
 
 export default function Form(){
     const dispatch = useDispatch();
-    //const breed = useSelector(state => state.myBreeds)?.map(b => b.name);
     const temps = useSelector(state => state.temperaments);
     const [dog, setDog] = useState({
         name: "",
@@ -36,6 +35,12 @@ export default function Form(){
         min_life_span: "",
         max_life_span: "",
     })
+
+    const breeds = useSelector(state => state.allBreeds);
+    let nameBreeds = [];
+    if(breeds[0]){
+        nameBreeds = breeds.map(b => b.name.toLowerCase())
+    }
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -112,7 +117,23 @@ export default function Form(){
                     [name]: [...dog.temperaments, value]
                 });
             }
-        }else{
+        }
+        if(name === "name"){
+            setDog({
+                ...dog,
+                [name]: value
+            });
+            setErrors(validates({
+                ...dog,
+                [name]: value,
+            }));
+            if(nameBreeds.includes(value.toLowerCase())){
+                setErrors({
+                    ...errors,
+                    name: "*There is already a breed with that name"
+                })
+            }
+        } else{
             setDog({
                 ...dog,
                 [name]: value
@@ -126,7 +147,6 @@ export default function Form(){
     }
 
     useEffect(() => {
-        dispatch(getBreeds())
         dispatch(getTemperaments())
     }, [dispatch])
 

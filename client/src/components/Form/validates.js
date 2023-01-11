@@ -5,6 +5,9 @@ export default function validates(inputs){
     let errors = {};
 
     // -- NAME --
+    if(inputs.name.length < 4){
+        errors.name = "*Min 4 letters"
+    }
     if(!nameRegex.test(inputs.name)){
         errors.name = "*No numbers or special characters";
     }
