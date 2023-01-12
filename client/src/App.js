@@ -6,6 +6,7 @@ import Detail from './components/Detail/Detail';
 import Home from './components/Home/Home';
 import Form from './components/Form/Form';
 import Footer from './components/Footer/Footer';
+import About from './components/About/About';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/create" element={<Form />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
