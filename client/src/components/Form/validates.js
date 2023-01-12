@@ -26,6 +26,9 @@ export default function validates(inputs){
     if(inputs.name.includes("  ")){
         errors.name = "*No two spaces can be together"
     }
+    if(inputs.name.length > 100){
+        errors.name = "*Max 100 letters"
+    }
 
     // -- HEIGHT --
     if(inputs.min_height === ""){
