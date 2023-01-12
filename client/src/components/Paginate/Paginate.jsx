@@ -15,6 +15,16 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
   };
 
   if(input > Math.ceil(maximo)){
+    if(maximo === 0){
+      setPagina (0);
+      setInput (0);
+    } else {
+      setPagina (1);
+      setInput (1);
+    }
+  }
+
+  if(input === 0 && Math.ceil(maximo) > 1){
     setPagina (1);
     setInput (1);
   }
