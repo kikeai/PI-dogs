@@ -2,6 +2,7 @@ import styles from './filters.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useEffect } from 'react';
 
 export default function Filters(){
     const dispatch = useDispatch();
@@ -48,6 +49,18 @@ export default function Filters(){
                 return;
         }
     }
+
+    useEffect(() => {
+        if(selects.temp !== ""){
+            dispatch(actions.filterTemperaments(selects.temp))
+        }
+        if(selects.ob !== ""){
+            dispatch(actions.orderName(selects.ob))
+        }
+        if(selects.ow !== ""){
+            dispatch(actions.orderWeight(selects.ow))
+        }
+    }, [dispatch, selects.ob, selects.ow, selects.temp])
 
     return(
         <div className={styles.filtersContainer}>
