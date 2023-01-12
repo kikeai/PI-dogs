@@ -3,6 +3,7 @@ import { GET_BREEDS, GET_TEMPERAMENTS, GET_DETAIL, SEARCH_BREED, FILTER_BREEDS, 
 const initialState = {
     myBreeds: [],
     allBreeds: [],
+    prevBreeds: [],
     temperaments: [],
     detail: [],
     request: true,
@@ -16,6 +17,7 @@ export default function breeds(state=initialState, action){
                 ...state,
                 myBreeds: [...payload],
                 allBreeds: [...payload],
+                prevBreeds: [...payload],
             }
         case GET_TEMPERAMENTS:
             return{
@@ -37,7 +39,8 @@ export default function breeds(state=initialState, action){
             if(typeof payload !== "string") res = [...payload];
             return{
                 ...state,
-                myBreeds: [...res]
+                myBreeds: [...res],
+                prevBreeds: [...res],
             }
         case FILTER_BREEDS:
             const filterCopy = [...state.allBreeds]
@@ -50,13 +53,14 @@ export default function breeds(state=initialState, action){
             return{
                 ...state,
                 myBreeds: [...filteredBreeds],
+                prevBreeds: [...filteredBreeds],
             }
         case FILTER_TEMPERAMENTS:
             let breedsCopy;
             if(payload === "All"){
-                breedsCopy = [...state.allBreeds]
+                breedsCopy = [...state.prevBreeds]
             } else{
-                breedsCopy = [...state.myBreeds];
+                breedsCopy = [...state.prevBreeds];
                 breedsCopy = breedsCopy.filter(b => b.temperaments.includes(payload))
             }
             return{
