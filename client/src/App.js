@@ -8,7 +8,7 @@ import Form from './components/Form/Form';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'https://pi-dogs-production-892d.up.railway.app/';
 
 
 function App() {
