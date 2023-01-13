@@ -7,6 +7,8 @@ import Home from './components/Home/Home';
 import Form from './components/Form/Form';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 
 function App() {

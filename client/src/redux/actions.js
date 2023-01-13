@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export function getBreeds(){
     return async function(dispatch) {
-        const res = await axios.get('http://localhost:3001/dogs')
+        const res = await axios.get('/dogs')
         return dispatch({
             type: GET_BREEDS,
             payload: res.data,
@@ -13,7 +13,7 @@ export function getBreeds(){
 
 export function getTemperaments(){
     return async function(dispatch) {
-        const res = await axios.get('http://localhost:3001/temperaments')
+        const res = await axios.get('/temperaments')
         return dispatch({
             type: GET_TEMPERAMENTS,
             payload: res.data,
@@ -23,7 +23,7 @@ export function getTemperaments(){
 
 export function getDetail(id){
     return async function(dispatch){
-        const res = await axios.get(`http://localhost:3001/dogs/${id}`)
+        const res = await axios.get(`/dogs/${id}`)
         return dispatch({
             type: GET_DETAIL,
             payload: res.data,
@@ -34,7 +34,7 @@ export function getDetail(id){
 export function searchBreed(name){
     return async function(dispatch){
         try {
-            const res = await axios.get(`http://localhost:3001/dogs/?name=${name}`)
+            const res = await axios.get(`/dogs/?name=${name}`)
             return dispatch({
                 type: SEARCH_BREED,
                 payload: res.data,
@@ -88,7 +88,7 @@ export function restartFilters(){
 export function postBreed(breed){
     return async function(){
         try {
-            const res = await axios.post(`http://localhost:3001/dogs`, breed);
+            const res = await axios.post(`/dogs`, breed);
             return res.data; 
         } catch (error) {
             return error;
