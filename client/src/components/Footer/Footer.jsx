@@ -11,7 +11,7 @@ export default function Footer(){
     return (
         <div className={styles.footerContainer}>
             <img className={styles.logoFooter} src={logoDogs} alt="logowikiwhite" />
-            <p className={styles.textFooter}>Pagina para conseguir informacion sobre cualquier raza de perro ademas de poder agregar alguna raza que no este incluida.</p>
+            <p className={styles.textFooter}>Page to get information about any breed of dog in addition to being able to add a breed that is not included.</p>
             <div className={styles.redesContainer}>
                 <a href="https://github.com/kikeai"><img className={styles.redes} src={github} alt="github" /></a>
                 <a href="https://instagram.com/kike.ai"><img className={styles.redes} src={instagram} alt="instagram" /></a>

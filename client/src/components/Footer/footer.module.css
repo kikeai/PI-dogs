@@ -22,7 +22,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
     font-size: 0.9em;
-    color: antiquewhite;
+    color: rgb(237, 242, 244);
 }
 
 .redesContainer{
@@ -52,7 +52,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
     font-size: .8em;
-    color: antiquewhite;
+    color: rgb(237, 242, 244);
     transition: all 300ms ease;
 }
 
@@ -70,5 +70,5 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
     font-size: 0.9em;
-    color: antiquewhite;
+    color: rgb(237, 242, 244);
 }

@@ -37,7 +37,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
     font-style: italic;
-    color: antiquewhite;
+    color: #edf2f4;
     font-size: 2em;
     max-width: 500px;
     margin: 0;
@@ -46,7 +46,7 @@
 .dataText{
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    color: antiquewhite;
+    color: #edf2f4;
     margin: 0;
     font-size: 1em;
 }
@@ -62,7 +62,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     padding: 10px 15px;
-    color: antiquewhite;
+    color: #edf2f4;
     margin: 0;
     text-align: center;
     max-width: 400px;

@@ -11,8 +11,8 @@ export default function About(){
     return (
         <div className={styles.page}>
             <div className={styles.text}>
-                <h3 className={styles.title}>¡HOLA SOY KIKE!</h3>
-                <p className={styles.parrafo}>Me llamo Luis Garcia pero me dicen kike y soy de Venezuela, tengo 19 años y soy Developer web junior con conocimientos en JavaScript, HTML, CSS, React.js, Redux, node.js y varias tecnologias más entre frontend y backend, además soy diseñador gráfico con experiencia en branding y diseño para RRSS.</p>
+                <h3 className={styles.title}>¡HI I'M KIKE!</h3>
+                <p className={styles.parrafo}>My name is Luis Garcia but they call me kike and I'm from Venezuela, I'm 19 years old and I'm a junior web developer with knowledge in JavaScript, HTML, CSS, React.js, Redux, node.js and various other technologies between frontend and backend, I'm also graphic designer with experience in branding and design for RRSS.</p>
                 <Link className={styles.home} to="/home">/home</Link>
             </div>
 
