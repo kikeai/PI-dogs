@@ -16,13 +16,8 @@ export default function SearchBar(){
     const dispatch = useDispatch();
     function handleChange(e){
         const {value} = e.target;
-        if(value === "Reset"){
-            dispatch(actions.restartFilters())
-            setFilterBreed("")
-        } else {
-            setFilterBreed(value)
-            dispatch(actions.filterBreeds(value))
-        }
+        setFilterBreed(value)
+        dispatch(actions.filterBreeds(value))
     }
 
     function handleWrite(e){
@@ -46,7 +41,6 @@ export default function SearchBar(){
             <option value="All">All</option>
             <option value="Existent">Existent</option>
             <option value="Created">Created</option>
-            <option value="Reset">Reset filter</option>
         </select>
         <form className={styles.search} onSubmit={handleSubmit}>
             <input className={styles.input} type="search" onChange={handleWrite} value={breed} placeholder="Search breed" />

@@ -150,7 +150,7 @@ export default function breeds(state=initialState, action){
         case RESTART_FILTERS:
             return{
                 ...state,
-                myBreeds: [...state.allBreeds],
+                myBreeds: [...state.prevBreeds],
             }
         case REQUEST:
             return{
