@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./form.module.css";
-import validates from "./validates";
+import validates, { imageValidate } from "./validates";
 import { tempValidate } from "./validates";
 import { Link } from 'react-router-dom';
 import { postBreed, getTemperaments, requestYoN } from "../../redux/actions";
@@ -24,6 +24,7 @@ export default function Form(){
     
     const [newTemp, setNewTemp] = useState("");
     const [tempErr, setTempErr] = useState("");
+    const [imageErr, setImageErr] = useState("");
     const [resPost, setResPost] = useState("");
 
     const [errors, setErrors] = useState({
@@ -66,8 +67,18 @@ export default function Form(){
             if(errors[key] !== "") err = true;
         }
         if(!dog.name) err = true;
+        if(imageErr) err = true;
         
         return err;
+    }
+
+    function handleImageChange(e){
+        const { value } = e.target;
+        setDog({
+            ...dog,
+            image: value
+        })
+        setImageErr(imageValidate(value))
     }
 
     function handleTempChange(e){
@@ -224,7 +235,8 @@ export default function Form(){
                     <div className={styles.inputContainer1}>
                         <div className={styles.inputSoon1}>
                             <p className={styles.nameInput}>Image</p>
-                            <input className={styles.inputOk} type="text" name="image" value={dog.image} onChange={handleChange} placeholder="Url of your image" />
+                            <input className={!imageErr? styles.inputOk : styles.inputBad} type="text" name="image" value={dog.image} onChange={handleImageChange} placeholder="Url of your image" />
+                            {imageErr? <p className={styles.errorText}>{imageErr}</p>: <p className={styles.falseText}>p</p>}
                         </div>
                     </div>
 

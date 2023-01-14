@@ -89,8 +89,19 @@ export function tempValidate(str){
     if(str.charAt(0) === " "){
         error = "*The first character cannot be a space"
     } 
-    if(str === ""){
-        error = "";
+    if(str.length > 100){
+        error = "*Max 100 letters";
     }
     return error;
+}
+
+export function imageValidate(str){
+    let error = "";
+    if(str.includes(" ")){
+        error = "*Cannot have spaces"
+    }
+    if(str.length > 450){
+        error = "*Max 450 characters"
+    }
+    return error
 }
