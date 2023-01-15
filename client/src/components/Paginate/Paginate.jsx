@@ -36,7 +36,7 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
       if (
         parseInt (e.target.value < 1) ||
         parseInt (e.target.value) > Math.ceil (maximo) ||
-        isNaN (parseInt (e.target.value))
+        isNaN (e.target.value - 0)
       ) {
         setPagina (1);
         setInput (1);
@@ -64,7 +64,6 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
         className={styles.input}
         onChange={e => onChange (e)}
         onKeyDown={e => onKeyDown (e)}
-        type="number"
         name="page"
         autoComplete="off"
         value={input}
