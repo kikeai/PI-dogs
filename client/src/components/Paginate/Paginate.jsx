@@ -64,6 +64,7 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
         className={styles.input}
         onChange={e => onChange (e)}
         onKeyDown={e => onKeyDown (e)}
+        type="number"
         name="page"
         autoComplete="off"
         value={input}

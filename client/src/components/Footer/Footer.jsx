@@ -13,10 +13,10 @@ export default function Footer(){
             <img className={styles.logoFooter} src={logoDogs} alt="logowikiwhite" />
             <p className={styles.textFooter}>Page to get information about any breed of dog in addition to being able to add a breed that is not included.</p>
             <div className={styles.redesContainer}>
-                <a href="https://github.com/kikeai"><img className={styles.redes} src={github} alt="github" /></a>
-                <a href="https://instagram.com/kike.ai"><img className={styles.redes} src={instagram} alt="instagram" /></a>
-                <a href="https://linkedin.com/in/kikeai"><img className={styles.redes} src={linkedin} alt="linkedin" /></a>
-                <a href="https://twitter.com/KIKEill"><img className={styles.redes} src={twitter} alt="twitter" /></a>
+                <a href="https://github.com/kikeai" target="_blank" rel="noreferrer"><img className={styles.redes} src={github} alt="github" /></a>
+                <a href="https://instagram.com/kike.ai" target="_blank" rel="noreferrer"><img className={styles.redes} src={instagram} alt="instagram" /></a>
+                <a href="https://linkedin.com/in/kikeai" target="_blank" rel="noreferrer"><img className={styles.redes} src={linkedin} alt="linkedin" /></a>
+                <a href="https://twitter.com/KIKEill" target="_blank" rel="noreferrer"><img className={styles.redes} src={twitter} alt="twitter" /></a>
             </div>
 
             <div className={styles.linkContainer}>
