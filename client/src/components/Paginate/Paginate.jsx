@@ -5,12 +5,12 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
   const [input, setInput] = useLocalStorage ("inputs", 1);
 
   const nextPage = () => {
-    setInput (parseInt(input) + 1);
+    setInput (parseInt(pagina) + 1);
     setPagina (parseInt(pagina) + 1);
   };
 
   const previousPage = () => {
-    setInput (parseInt(input) - 1);
+    setInput (parseInt(pagina) - 1);
     setPagina (parseInt(pagina) - 1);
   };
 
@@ -36,7 +36,9 @@ export const Paginate = ({pagina, setPagina, maximo}) => {
       if (
         parseInt (e.target.value < 1) ||
         parseInt (e.target.value) > Math.ceil (maximo) ||
-        isNaN (e.target.value - 0)
+        isNaN (e.target.value - 0) ||
+        e.target.value === "" ||
+        e.target.value.includes(" ")
       ) {
         setPagina (1);
         setInput (1);
