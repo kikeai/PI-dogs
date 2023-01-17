@@ -34,17 +34,11 @@ export default function validates(inputs){
     if(inputs.min_height === ""){
         errors.min_height = "*It cant be empty"
     }
-    if(parseInt(inputs.min_height) !== Math.floor(parseInt(inputs.min_height))){
-        errors.min_height = "*Only integers";
-    }
     if(parseInt(inputs.min_height) <= 0){
         errors.min_height = "*Cannot be equal to or less than 0";
     }
     if(parseInt(inputs.min_height) > 1000){
         errors.min_height = "*Cannot be greater than 1000";
-    }
-    if(parseInt(inputs.max_height) !== Math.floor(parseInt(inputs.max_height))){
-        errors.max_height = "*Only integers";
     }
     if(parseInt(inputs.max_height) <= 0){
         errors.max_height = "*Cannot be equal to or less than 0";
@@ -60,17 +54,11 @@ export default function validates(inputs){
     if(inputs.min_weight === ""){
         errors.min_weight = "*It cant be empty"
     }
-    if(parseInt(inputs.min_weight) !== Math.floor(parseInt(inputs.min_weight))){
-        errors.min_weight = "*Only integers";
-    }
     if(parseInt(inputs.min_weight) <= 0){
         errors.min_weight = "*Cannot be equal to or less than 0";
     }
     if(parseInt(inputs.min_weight) > 1000){
         errors.min_weight = "*Cannot be greater than 1000";
-    }
-    if(parseInt(inputs.max_weight) !== Math.floor(parseInt(inputs.max_weight))){
-        errors.max_weight = "*Only integers";
     }
     if(parseInt(inputs.max_weight) <= 0){
         errors.max_weight = "*Cannot be equal to or less than 0";
@@ -86,17 +74,11 @@ export default function validates(inputs){
     if(inputs.min_life_span === ""){
         errors.min_life_span = "*It cant be empty"
     }
-    if(parseInt(inputs.min_life_span) !== Math.floor(parseInt(inputs.min_life_span))){
-        errors.min_life_span = "*Only integers";
-    }
     if(parseInt(inputs.min_life_span) <= 0){
         errors.min_life_span = "*Cannot be equal to or less than 0";
     }
     if(parseInt(inputs.min_life_span) > 1000){
         errors.min_life_span = "*Cannot be greater than 1000";
-    }
-    if(parseInt(inputs.max_life_span) !== Math.floor(parseInt(inputs.max_life_span))){
-        errors.max_life_span = "*Only integers";
     }
     if(parseInt(inputs.max_life_span) <= 0){
         errors.max_life_span = "*Cannot be equal to or less than 0";
