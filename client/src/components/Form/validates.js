@@ -37,8 +37,14 @@ export default function validates(inputs){
     if(parseInt(inputs.min_height) <= 0){
         errors.min_height = "*Cannot be equal to or less than 0";
     }
+    if(parseInt(inputs.min_height) > 1000){
+        errors.min_height = "*Cannot be greater than 1000";
+    }
     if(parseInt(inputs.max_height) <= 0){
         errors.max_height = "*Cannot be equal to or less than 0";
+    }
+    if(parseInt(inputs.max_height) > 1000){
+        errors.max_height = "*Cannot be greater than 1000";
     } else if(parseInt(inputs.min_height) >= parseInt(inputs.max_height)){
         errors.min_height = "*Min not greater or equal than max";
         errors.max_height = "*Max not less or equal than min";
@@ -51,8 +57,14 @@ export default function validates(inputs){
     if(parseInt(inputs.min_weight) <= 0){
         errors.min_weight = "*Cannot be equal to or less than 0";
     }
-    if(parseInt(inputs.max_weight) <= 0){
-        errors.max_weight = "*Cannot be equal to or less than 0";
+    if(parseInt(inputs.min_weight) > 1000){
+        errors.min_weight = "*Cannot be greater than 1000";
+    }
+    if(parseInt(inputs.min_weight) <= 0){
+        errors.min_weight = "*Cannot be equal to or less than 0";
+    }
+    if(parseInt(inputs.max_weight) > 1000){
+        errors.max_weight = "*Cannot be greater than 1000";
     } else if(parseInt(inputs.min_weight) >= parseInt(inputs.max_weight)){
         errors.min_weight = "*Min not greater or equal than max";
         errors.max_weight = "*Max not less or equal than min";
@@ -65,8 +77,14 @@ export default function validates(inputs){
     if(parseInt(inputs.min_life_span) <= 0){
         errors.min_life_span = "*Cannot be equal to or less than 0";
     }
+    if(parseInt(inputs.min_life_span) > 1000){
+        errors.min_life_span = "*Cannot be greater than 1000";
+    }
     if(parseInt(inputs.max_life_span) <= 0){
         errors.max_life_span = "*Cannot be equal to or less than 0";
+    }
+    if(parseInt(inputs.max_life_span) > 1000){
+        errors.max_life_span = "*Cannot be greater than 1000";
     } else if(parseInt(inputs.min_life_span) >= parseInt(inputs.max_life_span)){
         errors.min_life_span = "*Min not greater or equal than max";
         errors.max_life_span = "*Max not less or equal than min";
