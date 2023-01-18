@@ -122,6 +122,7 @@ export default function Form(){
         const {name, value} = e.target
         if(name === "temperaments"){
             if(dog.temperaments.includes(value)) return;
+            else if(dog.temperaments.length >= 10) return;
             else{
                 setDog({
                     ...dog,
@@ -224,7 +225,7 @@ export default function Form(){
                         <input className={!tempErr? styles.inputOk : styles.inputBad} type="text" value={newTemp} onChange={handleTempChange} placeholder="Set a temperament" />
                         {tempErr? <p className={styles.errorText}>{tempErr}</p>: <p className={styles.falseText}>p</p>}
                         <div className={styles.buttonContainer}>
-                            <button className={styles.button} disabled={!newTemp || tempErr} onClick={addOrRemoveTemp} name="add">Add temperament</button>
+                            <button className={styles.button} disabled={!newTemp || tempErr || dog.temperaments.length >= 10} onClick={addOrRemoveTemp} name="add">Add temperament</button>
                             <button className={styles.button} disabled={!dog.temperaments.length} onClick={addOrRemoveTemp} name="remove">Come back</button>
                         </div>
                         <div className={styles.cont}>
